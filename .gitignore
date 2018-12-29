@@ -8,6 +8,12 @@
 # react-native
 node_modules/
 
+# Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
 ### Android ###
 # Built application files
 *.apk
