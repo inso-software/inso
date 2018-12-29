@@ -2,6 +2,12 @@
 # Created by https://www.gitignore.io/api/macos,windows,android,webstorm,reactnative,androidstudio
 # Edit at https://www.gitignore.io/?templates=macos,windows,android,webstorm,reactnative,androidstudio
 
+# WebStorm
+.idea
+
+# react-native
+node_modules/
+
 ### Android ###
 # Built application files
 *.apk
