@@ -35,10 +35,13 @@ ext {
             ],
             xiaomi_auth              : "com.xiaomi.account:oauth-android:latest.release",
             butterknife: "com.jakewharton:butterknife:$versionConfig.butterknife",
-            butterknife_annotationProcessor :"com.jakewharton:butterknife-compiler:$versionConfig.butterknife"
+            butterknife_annotationProcessor :"com.jakewharton:butterknife-compiler:$versionConfig.butterknife",
+            reactnative : "com.facebook.react:react-native:+"
     ]
 
     configAndroidDomain = this.&configAndroidDomain
+    configApkName = this.&configApkName
+    configSigning = this.&configSigning
     configAppDependencies = this.&configAppDependencies
     configCommonLibDependencies = this.&configCommonLibDependencies
     configPhoneLibDependencies = this.&configPhoneLibDependencies
@@ -53,6 +56,37 @@ def configAndroidDomain(Project pro) {
     }
 }
 
+
+def configSigning(Project pro) {
+    File signPropertiesFile = file('sign/keystore.properties')
+    if (!signPropertiesFile.exists()) return
+    pro.android {
+        Properties properties = new Properties()
+        properties.load(new FileInputStream(signPropertiesFile))
+        signingConfigs {
+            release {
+                storeFile file(properties['keystore'])
+                storePassword properties['storePassword']
+                keyAlias properties['keyAlias']
+                keyPassword properties['keyPassword']
+            }
+        }
+        buildTypes.release.signingConfig signingConfigs.release
+    }
+}
+
+def configApkName(Project pro) {
+    pro.android.applicationVariants.all { variant ->
+        if (variant.buildType.name != "debug") {
+            variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apk")
+            variant.getPackageApplication().outputScope.apkDatas.forEach { apkData ->
+                apkData.outputFileName = "inso_" + variant.versionName.replace(".", "_") + ".apk"
+            }
+        }
+    }
+}
+
+//todo:common app is ok，rn is special. Not used.
 def configAppAndroidDomain(Project pro) {
     configSigning(pro)
     configApkName(pro)
@@ -84,34 +118,6 @@ def configAppAndroidDomain(Project pro) {
     }
 }
 
-def configSigning(Project pro) {
-    File signPropertiesFile = file('sign/keystore.properties')
-    if (!signPropertiesFile.exists()) return
-    pro.android {
-        Properties properties = new Properties()
-        properties.load(new FileInputStream(signPropertiesFile))
-        signingConfigs {
-            release {
-                storeFile file(properties['keystore'])
-                storePassword properties['storePassword']
-                keyAlias properties['keyAlias']
-                keyPassword properties['keyPassword']
-            }
-        }
-        buildTypes.release.signingConfig signingConfigs.release
-    }
-}
-
-def configApkName(Project pro) {
-    pro.android.applicationVariants.all { variant ->
-        if (variant.buildType.name != "debug") {
-            variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apk")
-            variant.getPackageApplication().outputScope.apkDatas.forEach { apkData ->
-                apkData.outputFileName = "inso_" + variant.versionName.replace(".", "_") + ".apk"
-            }
-        }
-    }
-}
 
 def configLibAndroidDomain(Project pro) {
     pro.android {
@@ -122,7 +128,6 @@ def configLibAndroidDomain(Project pro) {
             versionCode androidConfig.versionCode
             versionName androidConfig.versionName
         }
-
         buildTypes {
             release {
                 minifyEnabled false
@@ -143,7 +148,6 @@ def configLibAndroidDomain(Project pro) {
     }
 }
 
-
 def configAppDependencies(Project pro) {
     pro.dependencies {
         implementation fileTree(include: ['*.jar'], dir: 'app/libs')
@@ -159,6 +163,7 @@ def configAppDependencies(Project pro) {
         releaseImplementation depConfig.leakcanary.android_no_op
         implementation depConfig.butterknife
         annotationProcessor depConfig.butterknife_annotationProcessor
+        implementation depConfig.reactnative
     }
 }
 

@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.inso.watch.commonlib" >
+    <application>
+        <activity
+            android:name=".utils.PermissionUtils$PermissionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:multiprocess="true"
+            android:theme="@style/ActivityTranslucent"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+    </application>
+</manifest>

@@ -1,0 +1,7 @@
+plugins {
+    id "com.android.library"
+}
+
+// in config.gradle
+configAndroidDomain project
+configPhoneLibDependencies project
