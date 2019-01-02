@@ -5,16 +5,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/hello_react"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HelloReact"/>
+    <!--<Button-->
+        <!--android:id="@+id/hello_react"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="HelloReact"/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/hello_react2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="HelloReact2"/>-->
 
     <Button
-        android:id="@+id/hello_react2"
+        android:id="@+id/btn_example_comm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HelloReact2"/>
+        android:text="React communicate with Native example"/>
+
+    <Button
+        android:id="@+id/btn_example_xiaomi_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xiaomi-login"/>
 
 </LinearLayout>

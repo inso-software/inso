@@ -11,25 +11,21 @@ import {
     DeviceEventEmitter
 } from 'react-native';
 
-const chModule = NativeModules.ChModule;
-export default class HelloWorld extends React.Component {
+const hybridModule = NativeModules.HybridModule;
+export default class ReactNativePage extends React.Component {
 
     constructor(props){
         super(props);
         this.state={
-            text1:'ToastForAndroid',
-            text2:'testAndroidCallbackMethod',
-            text3:'textAndroidPromiseMethod',
-            text4:'DeviceEventEmitter',
-            text5:'getValue',
-            text6:'callChenModule',
-            data:'no_data',
+            text1:'callNative',
+            text2:'callNativeInvokeFuntion',
+            text3:'callNativeByPromise',
+            text4:'callNativeByEmitter',
         }
     }
 
     componentWillMount() {
-        DeviceEventEmitter.addListener('EventName', function  (msg) {
-            console.log(msg);
+        DeviceEventEmitter.addListener('HybridEvent', function  (msg) {
             let rest=NativeModules.ToastForAndroid.MESSAGE;
             ToastAndroid.show("DeviceEventEmitter收到消息:" + "\n" + rest, ToastAndroid.SHORT)
         });
@@ -109,4 +105,4 @@ var styles = StyleSheet.create({
 });
 
 AppRegistry
-.registerComponent('HelloWorlds', () => HelloWorld);
+.registerComponent('ReactNativeAct', () => ReactNativePage);

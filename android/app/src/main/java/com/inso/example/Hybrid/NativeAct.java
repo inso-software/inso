@@ -1,8 +1,9 @@
-package com.inso;
+package com.inso.example.Hybrid;
 
 import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
+import com.inso.R;
 
 /**
  * Comment:
@@ -12,10 +13,12 @@ import com.facebook.react.ReactActivity;
  * GitHub: https://github.com/ftc300
  */
 
-public class ChAct  extends ReactActivity {
+public class NativeAct extends ReactActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chen);
+        setContentView(R.layout.act_example_native);
     }
+
+
 }

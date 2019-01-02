@@ -1,4 +1,4 @@
-package com.inso;
+package com.inso.example.Hybrid;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
@@ -9,18 +9,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ExampleReactNativePackage implements ReactPackage{
+/**
+ * Comment:
+ * Author: ftc300
+ * Date: 2019/1/2
+ * Blog: www.ftc300.pub
+ * GitHub: https://github.com/ftc300
+ */
 
-    public ToastExample toastExample;
-    public ChModule mChModule;
+public class HybridPackage implements ReactPackage {
+    HybridModule mHybridModule ;
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
-        toastExample=new ToastExample(reactContext);
-        mChModule = new ChModule(reactContext);
-        modules.add(toastExample);
-        modules.add(mChModule);
+        mHybridModule=new HybridModule(reactContext);
+        modules.add(mHybridModule);
         return modules;
     }
 
@@ -28,5 +32,4 @@ public class ExampleReactNativePackage implements ReactPackage{
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Collections.emptyList();
     }
-
 }
