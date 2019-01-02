@@ -8,11 +8,11 @@ import NavigationBar from "../common/NavigationBar";
 import BaseComponent from './BaseComponent';
 
 export default class ProductPage extends BaseComponent {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            customThemeViewVisible:false,
-            theme:this.props.theme
+        this.state = {
+            customThemeViewVisible: false,
+            theme: this.props.theme
         }
     }
 

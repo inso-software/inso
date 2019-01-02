@@ -17,7 +17,7 @@ import {
 import PropTypes from 'prop-types';
 const NAV_BAR_HEIGHT_IOS = 44;
 const NAV_BAR_HEIGHT_ANDROID = 50;
-const STATUS_BAR_HEIGHT = DeviceInfo.isIPhoneX_deprecated?0:20;
+const STATUS_BAR_HEIGHT = DeviceInfo.isIPhoneX_deprecated ? 0 : 20;
 const StatusBarShape = {
     barStyle: PropTypes.oneOf(['light-content', 'default',]),
     hidden: PropTypes.bool,
@@ -28,10 +28,10 @@ export default class NavigationBar extends Component {
         style: ViewPropTypes.style,
         title: PropTypes.string,
         titleView: PropTypes.element,
-        titleLayoutStyle:ViewPropTypes.style,
+        titleLayoutStyle: ViewPropTypes.style,
         hide: PropTypes.bool,
         statusBar: PropTypes.shape(StatusBarShape),
-        rightButton:  PropTypes.element,
+        rightButton: PropTypes.element,
         leftButton: PropTypes.element,
 
     }
@@ -41,6 +41,7 @@ export default class NavigationBar extends Component {
             hidden: false,
         },
     }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -52,7 +53,7 @@ export default class NavigationBar extends Component {
     getButtonElement(data) {
         return (
             <View style={styles.navBarButton}>
-                {data? data : null}
+                {data ? data : null}
             </View>
         );
     }
@@ -61,7 +62,7 @@ export default class NavigationBar extends Component {
         let statusBar = !this.props.statusBar.hidden ?
             <View style={styles.statusBar}>
                 <StatusBar {...this.props.statusBar} />
-            </View>: null;
+            </View> : null;
 
         let titleView = this.props.titleView ? this.props.titleView :
             <Text ellipsizeMode="head" numberOfLines={1} style={styles.title}>{this.props.title}</Text>;
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     statusBar: {
-        height: Platform.OS === 'ios' ? STATUS_BAR_HEIGHT:0,
+        height: Platform.OS === 'ios' ? STATUS_BAR_HEIGHT : 0,
 
     },
 });

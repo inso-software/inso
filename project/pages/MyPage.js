@@ -10,11 +10,11 @@ import NavigatorUtil from '../utils/NavigatorUtil';
 import ViewUtils from '../utils/ViewUtils';
 
 export default class MyPage extends BaseComponent {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            customThemeViewVisible:false,
-            theme:this.props.theme
+        this.state = {
+            customThemeViewVisible: false,
+            theme: this.props.theme
         }
     }
 

@@ -107,13 +107,13 @@ export default class HomePage extends BaseComponent {
     }
 
     render() {
-        const Root=<SafeAreaViewPlus
+        const Root = <SafeAreaViewPlus
             topColor={this.state.theme.themeColor}
             bottomInset={false}
         >
             <TabNavigator>
                 {this._renderTab(ProductPage, FLAG_TAB.flag_product, '产品', require('../resource/tabbar/ic_tabbar_home.png'), require('../resource/tabbar/ic_tabbar_home_selected.png'))}
-                {this._renderTab(MyPage, FLAG_TAB.flag_my,'我的', require('../resource/tabbar/ic_tabbar_mine.png'), require('../resource/tabbar/ic_tabbar_mine_selected.png'))}
+                {this._renderTab(MyPage, FLAG_TAB.flag_my, '我的', require('../resource/tabbar/ic_tabbar_mine.png'), require('../resource/tabbar/ic_tabbar_mine_selected.png'))}
             </TabNavigator>
             <Toast ref={(toast) => this.toast = toast}/>
         </SafeAreaViewPlus>
