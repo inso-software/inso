@@ -1,3 +1,4 @@
 rootProject.name = 'inso'
 
 include ':app'
+//include ':app', ':phonelib', ':commonlib', ':3rdlib'
