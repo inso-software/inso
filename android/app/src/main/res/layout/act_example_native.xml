@@ -7,14 +7,20 @@
     android:gravity="center">
 
     <TextView
-        android:id="@+id/data"
-        android:layout_alignParentBottom="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Data:"/>
-    <TextView
         android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Native Activity"/>
+        android:text="This is Native Activity"/>
+
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Happy new year!"/>
+
+    <Button
+        android:id="@+id/btn_gotorn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to RNAct"/>
 </LinearLayout>

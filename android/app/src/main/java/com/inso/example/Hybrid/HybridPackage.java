@@ -20,6 +20,10 @@ import java.util.List;
 public class HybridPackage implements ReactPackage {
     HybridModule mHybridModule ;
 
+    public HybridModule getHybridModule() {
+        return mHybridModule;
+    }
+
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();

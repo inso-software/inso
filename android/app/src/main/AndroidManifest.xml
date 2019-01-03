@@ -24,12 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-        <activity android:name=".HelloReactActivity" />
         <activity android:name=".example.Hybrid.NativeAct" />
         <activity android:name=".example.Login.XiaoMiSampleAct" />
         <activity android:name="com.xiaomi.account.openauth.AuthorizeActivity" />
         <activity android:name=".example.Hybrid.RNAct" />
-
         <service android:name=".example.IncomingCall.IncomingCallService" />
     </application>
 

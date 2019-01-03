@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.facebook.react.ReactActivity;
+import com.inso.example.Hybrid.NativeAct;
 import com.inso.example.Login.XiaoMiSampleAct;
 import com.inso.watch.commonlib.constants.PermissionConstants;
 import com.inso.watch.commonlib.utils.L;
@@ -56,13 +57,15 @@ public class MainExampleActivity extends ReactActivity {
 
     @OnClick({R.id.btn_example_comm, R.id.btn_example_xiaomi_login})
     public void onViewClicked(View view) {
+        Intent intent = null;
         switch (view.getId()) {
             case R.id.btn_example_xiaomi_login:
-                Intent intent = new Intent(MainExampleActivity.this, XiaoMiSampleAct.class);
-                startActivity(intent);
+                intent = new Intent(MainExampleActivity.this, XiaoMiSampleAct.class);
                 break;
             case R.id.btn_example_comm:
+                intent = new Intent(MainExampleActivity.this, NativeAct.class);
                 break;
         }
+        startActivity(intent);
     }
 }
