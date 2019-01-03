@@ -44,7 +44,7 @@ const TabNavigator = createBottomTabNavigator(
                 activeTintColor: '#121317',
                 inactiveTintColor: 'gray',
             },
-            lazy: true,// 是否懒加载
+            lazy: false,// 是否懒加载
         }),
     }
 );
