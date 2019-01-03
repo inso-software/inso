@@ -1,12 +1,27 @@
-/**
- * Created by inshow on 2019/1/2.
- */
 import React from 'react';
 
-import AppNavigator from '../navigator/AppNavigator';
+import {createAppContainer, createStackNavigator} from 'react-navigation';
 
-function App() {
-    //在这里可以进行一些初始化配置
-    return AppNavigator;
-}
-module.exports = App();
+import TabBar from './TabBar';
+import HomePage from './HomePage';
+import ScanPage from "./ScanPage";
+import MinePage from "./MinePage";
+import SharePage from "./SharePage";
+
+const StackNavigator = createStackNavigator(
+    {
+        TabBar: TabBar,
+        HomePage: HomePage,
+        MinePage: MinePage,
+        ScanPage: ScanPage,
+        SharePage: SharePage,
+    },
+    {
+        initialRouteName: 'TabBar',
+        defaultNavigationOptions: {
+            header: null
+        }
+    }
+);
+
+export default App = createAppContainer(StackNavigator);

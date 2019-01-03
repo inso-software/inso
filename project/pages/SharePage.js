@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-    View, Text, StyleSheet
+    View, Text, StyleSheet,
 } from 'react-native';
 
 import BaseComponent from './BaseComponent';
 import NavigationBar from '../views/NavigationBar';
 import ViewUtils from "../utils/ViewUtils";
 
-export default class HomePage extends BaseComponent {
+export default class SharePage extends BaseComponent {
     componentDidMount() {
         super.componentDidMount();
     }
@@ -22,11 +22,11 @@ export default class HomePage extends BaseComponent {
         };
         let navigationBar =
             <NavigationBar
-                title={'产品'}
+                title={'分享'}
                 statusBar={statusBar}
-                rightButton={ViewUtils.getMoreButton(
+                leftButton={ViewUtils.getLeftButton(
                     () => {
-                        this.props.navigation.navigate('ScanPage');
+                        this.props.navigation.goBack();
                     }
                 )}
             />;
@@ -34,7 +34,7 @@ export default class HomePage extends BaseComponent {
             <View style={{flex: 1}}>
                 {navigationBar}
                 <View style={styles.container}>
-                    <Text>产品</Text>
+                    <Text>分享</Text>
                 </View>
             </View>
         )

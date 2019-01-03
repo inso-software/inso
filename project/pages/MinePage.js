@@ -1,15 +1,21 @@
 import React from 'react';
 import {
-    View, Text, StyleSheet
+    View, Text, StyleSheet,
 } from 'react-native';
 
 import BaseComponent from './BaseComponent';
 import NavigationBar from '../views/NavigationBar';
 import ViewUtils from "../utils/ViewUtils";
 
-export default class HomePage extends BaseComponent {
+export default class MinePage extends BaseComponent {
+
     componentDidMount() {
         super.componentDidMount();
+
+        // Toast示例
+        // setTimeout(function () {
+        //     this.showToast('测试');
+        // }.bind(this),1000);
     }
 
     componentWillUnmount() {
@@ -22,19 +28,20 @@ export default class HomePage extends BaseComponent {
         };
         let navigationBar =
             <NavigationBar
-                title={'产品'}
+                title={'我的'}
                 statusBar={statusBar}
-                rightButton={ViewUtils.getMoreButton(
+                rightButton={ViewUtils.getShareButton(
                     () => {
-                        this.props.navigation.navigate('ScanPage');
+                        this.props.navigation.navigate('SharePage');
                     }
                 )}
             />;
         return (
             <View style={{flex: 1}}>
                 {navigationBar}
+                {this.getToast()}
                 <View style={styles.container}>
-                    <Text>产品</Text>
+                    <Text>我的</Text>
                 </View>
             </View>
         )
