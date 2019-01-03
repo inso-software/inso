@@ -14,81 +14,73 @@ import {
 const hybridModule = NativeModules.HybridModule;
 export default class ReactNativePage extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            text1:'callNative',
-            text2:'callNativeInvokeFuntion',
-            text3:'callNativeByPromise',
-            text4:'callNativeByEmitter',
+        this.state = {
+            data:"No data",
+            text1: 'callNative',
+            text2: 'callNativeInvokeFuntion',
+            text3: 'callNativeByPromise',
+            text4: 'callNativeByEmitter',
         }
     }
 
     componentWillMount() {
-        DeviceEventEmitter.addListener('HybridEvent', function  (msg) {
-            let rest=NativeModules.ToastForAndroid.MESSAGE;
-            ToastAndroid.show("DeviceEventEmitter收到消息:" + "\n" + rest, ToastAndroid.SHORT)
-        });
-        NativeModules.ToastForAndroid.getDataFromIntent((result)=>{
+        console.log("componentWillMount");
+        let msg = hybridModule.HybridEvent;
+        ToastAndroid.show("Get Constants:" + msg);
+        DeviceEventEmitter.addListener('HybridEvent', (result)=> {
             this.setState({data:result});
         });
+
+        hybridModule.getIntentData((result) =>{
+            this.setState({data:result});
+        })
     }
 
     render() {
         return (
             <View style={styles.container}>
-              <Text>{this.state.data}</Text>
-              <TouchableOpacity onPress={this._onPressButton.bind(this)}>
-                <Text style={styles.hello}>{this.state.text1}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this._onPressButton2.bind(this)}>
-                <Text style={styles.hello}>{this.state.text2}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this._onPressButton3.bind(this)}>
-                <Text style={styles.hello}>{this.state.text3}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this._onPressButton4.bind(this)}>
-                <Text style={styles.hello}>{this.state.text4}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this._onPressButton5.bind(this)}>
-                <Text style={styles.hello}>{this.state.text5}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this._onPressButton6.bind(this)}>
-                <Text style={styles.hello}>{this.state.text6}</Text>
-              </TouchableOpacity>
+                <Text style={styles.textStyle}>{this.state.data}</Text>
+                <TouchableOpacity onPress={this._onPressButton.bind(this)}>
+                    <Text style={styles.textStyle}>{this.state.text1}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this._onPressButton2.bind(this)}>
+                    <Text style={styles.textStyle}>{this.state.text2}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this._onPressButton3.bind(this)}>
+                    <Text style={styles.textStyle}>{this.state.text3}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this._onPressButton4.bind(this)}>
+                    <Text style={styles.textStyle}>{this.state.text4}</Text>
+                </TouchableOpacity>
             </View>
         )
     }
 
-    _onPressButton(){
-        NativeModules.ToastForAndroid.show(1000);
+    _onPressButton() {
+        hybridModule.callNative("Happy new year！");
     }
 
-    _onPressButton2(){
-        NativeModules.ToastForAndroid.testAndroidCallbackMethod("HelloJack",(result)=>{
-            this.setState({text:result});
+    _onPressButton2() {
+        hybridModule.callNativeInvokeFuntion((result) => {
+            this.setState({data: result});
         });
     }
 
-    _onPressButton3(){
-        NativeModules.ToastForAndroid.textAndroidPromiseMethod("abcx").then((result)=>{
-            this.setState({text3:result});
-        }).catch((error)=>{
-            this.setState({text:'error'});
+    _onPressButton3() {
+        hybridModule.callNativeByPromise().then((result) => {
+            this.setState({data: result});
+        }).catch((error) => {
+            this.setState({data: 'error'});
         })
     }
 
-    _onPressButton4(){
-        NativeModules.ToastForAndroid.sendEvent();
-    }
+    1
 
-    _onPressButton5(){
-        ToastAndroid.show(NativeModules.ToastForAndroid.MESSAGE, ToastAndroid.SHORT)
+    _onPressButton4() {
+        hybridModule.callNativeByEmitter();
     }
-    _onPressButton6(){
-        chModule.switch2NewAct()
-    }
-
 }
 
 var styles = StyleSheet.create({
@@ -97,12 +89,11 @@ var styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'column',
     },
-    hello: {
+    textStyle: {
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
     },
 });
 
-AppRegistry
-.registerComponent('ReactNativeAct', () => ReactNativePage);
+AppRegistry.registerComponent('ReactNativeAct', () => ReactNativePage);
